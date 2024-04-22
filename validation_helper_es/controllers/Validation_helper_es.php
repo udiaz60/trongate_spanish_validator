@@ -1,18 +1,18 @@
 <?php
 class Validation_helper_es {
 
-    /** @var array Holds El campo form submission errors. */
+    /** @var array Holds the field form submission errors. */
     public array $form_submission_errors = [];
 
-    /** @var array Holds El campo posted fields. */
+    /** @var array Holds the field posted fields. */
     public array $posted_fields = [];
 
     /**
      * Set rules for form field validation.
      *
-     * @param string $key El campo form field name.
-     * @param string $label El campo form field label.
-     * @param string|array $rules El campo validation rules for El campo field.
+     * @param string $key The field form field name.
+     * @param string $label The field form field label.
+     * @param string|array $rules The field validation rules for the field field.
      * @return void
      */
     public function set_rules(string $key, string $label, $rules): void {
@@ -49,10 +49,10 @@ class Validation_helper_es {
     }
 
     /**
-     * Run a validation test based on El campo provided validation data and rules.
+     * Run a validation test based on the field provided validation data and rules.
      *
      * @param array $validation_data An array containing validation data.
-     * @param mixed|null $rules El campo rules for validation (default: null).
+     * @param mixed|null $rules The field rules for validation (default: null).
      * @return void
      */
     private function run_validation_test(array $validation_data, $rules = null): void {
@@ -110,7 +110,7 @@ class Validation_helper_es {
      * Run form validation checks.
      *
      * @param array|null $validation_array An array containing validation rules (default: null).
-     * @return bool|null Returns a boolean value if validation completes, null if El campo script execution is potentially terminated.
+     * @return bool|null Returns a boolean value if validation completes, null if the field script execution is potentially terminated.
      */
     public function run(?array $validation_array = null): ?bool {
 
@@ -133,9 +133,9 @@ class Validation_helper_es {
     }
 
     /**
-     * Invoke El campo required form validation tests.
+     * Invoke the field required form validation tests.
      *
-     * @param array $validation_array El campo array containing validation rules and data.
+     * @param array $validation_array The field array containing validation rules and data.
      * @return void
      */
     private function process_validation_array(array $validation_array): void {
@@ -170,10 +170,10 @@ class Validation_helper_es {
     }
 
     /**
-     * Build rules string based on El campo provided validation rules.
+     * Build rules string based on the field provided validation rules.
      *
      * @param array $value An array representing validation rules.
-     * @return string Returns a string containing rules generated from El campo validation rules.
+     * @return string Returns a string containing rules generated from the field validation rules.
      */
     private function build_rules_str(array $value): string {
         $rules_str = '';
@@ -199,7 +199,7 @@ class Validation_helper_es {
     }
 
     /**
-     * Check for required fields in El campo validation data.
+     * Check for required fields in the field validation data.
      *
      * @param array $validation_data An array containing validation data.
      *                              Required keys: 'key', 'label', 'posted_value'
@@ -215,7 +215,7 @@ class Validation_helper_es {
     }
 
     /**
-     * Check if El campo value in validation data is numeric.
+     * Check if the field value in validation data is numeric.
      *
      * @param array $validation_data An array containing validation data.
      *                              Required keys: 'key', 'label', 'posted_value'
@@ -229,7 +229,7 @@ class Validation_helper_es {
     }
 
     /**
-     * Check if El campo value in validation data is an integer.
+     * Check if the field value in validation data is an integer.
      *
      * @param array $validation_data An array containing validation data.
      *                              Required keys: 'key', 'label', 'posted_value'
@@ -248,7 +248,7 @@ class Validation_helper_es {
     }
 
     /**
-     * Check if El campo value in validation data is a decimal number.
+     * Check if the field value in validation data is a decimal number.
      *
      * @param array $validation_data An array containing validation data.
      *                              Required keys: 'key', 'label', 'posted_value'
@@ -259,7 +259,7 @@ class Validation_helper_es {
         if ($posted_value !== '') {
 
             if ((float) $posted_value == floor($posted_value)) {
-                $this->form_submission_errors[$key][] = 'El campo ' . $label . ' debe contener un número decimal.';
+                $this->form_submission_errors[$key][] = 'El campo ' . $label . ' debe contener un decimal.';
             }
         }
     }
@@ -269,8 +269,8 @@ class Validation_helper_es {
      *
      * @param array $validation_data An array containing validation data.
      *                              Required keys: 'posted_value', 'key', 'label'
-     * @return bool Returns true if El campo datepicker value is valid, false oElrwise.
-     * @throws Exception If El campo posted value is not a valid date in El campo expected format.
+     * @return bool Returns true if the field datepicker value is valid, false oElrwise.
+     * @throws Exception If the field posted value is not a valid date in the field expected format.
      */
     private function valid_datepicker(array $validation_data): bool {
         extract($validation_data);
@@ -284,7 +284,7 @@ class Validation_helper_es {
                     throw new Exception('Invalid date format'); // Triggering catch block if parsing fails
                 }
             } catch (Exception $e) {
-                $this->form_submission_errors[$key][] = 'El campo ' . $label . ' debe ser una fecha válida ' . DEFAULT_DATE_FORMAT . '.';
+                $this->form_submission_errors[$key][] = 'El campo ' . $label . ' debe contener una fecha válida ' . DEFAULT_DATE_FORMAT . '.';
                 return false;
             }
         }
@@ -293,35 +293,35 @@ class Validation_helper_es {
     }
 
     /**
-     * Validates a datepicker value by invoking El campo valid_datepicker() function.
+     * Validates a datepicker value by invoking the field valid_datepicker() function.
      * This function serves as an alias for valid_datepicker().
      *
      * @param array $validation_data An array containing validation data.
-     * @return bool Returns true if El campo datepicker value is valid, false oElrwise.
-     * @throws Exception If El campo posted value is not a valid date in El campo expected format.
+     * @return bool Returns true if the field datepicker value is valid, false oElrwise.
+     * @throws Exception If the field posted value is not a valid date in the field expected format.
      */
     private function valid_datepicker_us(array $validation_data): bool {
         return $this->valid_datepicker($validation_data);
     }
 
     /**
-     * Validates a datepicker value by invoking El campo valid_datepicker() function.
+     * Validates a datepicker value by invoking the field valid_datepicker() function.
      * This function serves as an alias for valid_datepicker().
      *
      * @param array $validation_data An array containing validation data.
-     * @return bool Returns true if El campo datepicker value is valid, false oElrwise.
-     * @throws Exception If El campo posted value is not a valid date in El campo expected format.
+     * @return bool Returns true if the field datepicker value is valid, false oElrwise.
+     * @throws Exception If the field posted value is not a valid date in the field expected format.
      */
     private function valid_datepicker_eu(array $validation_data): bool {
         return $this->valid_datepicker($validation_data);
     }
 
     /**
-     * Validates El campo datetimepicker input.
+     * Validates the field datetimepicker input.
      *
-     * @param array $validation_data El campo validation data containing key, label, and posted value.
+     * @param array $validation_data the field validation data containing key, label, and posted value.
      * 
-     * @return bool Returns true if El campo input is a valid date and time, oElrwise adds an error message and returns false.
+     * @return bool Returns true if the field input is a valid date and time, oElrwise adds an error message and returns false.
      */
     private function valid_datetimepicker(array $validation_data): bool {
         extract($validation_data);
@@ -343,8 +343,8 @@ class Validation_helper_es {
     /**
      * Alias of valid_datetimepicker().
      *
-     * @param array $validation_data El campo validation data containing key, label, and posted value.
-     * @return bool Returns true if El campo input is a valid date and time, oElrwise adds an error message and returns false.
+     * @param array $validation_data The field validation data containing key, label, and posted value.
+     * @return bool Returns true if The field input is a valid date and time, oElrwise adds an error message and returns false.
      */
     private function valid_datetimepicker_us(array $validation_data): bool {
         return $this->valid_datetimepicker($validation_data);
@@ -353,18 +353,18 @@ class Validation_helper_es {
     /**
      * Alias of valid_datetimepicker().
      *
-     * @param array $validation_data El campo validation data containing key, label, and posted value.
-     * @return bool Returns true if El campo input is a valid date and time, oElrwise adds an error message and returns false.
+     * @param array $validation_data the field validation data containing key, label, and posted value.
+     * @return bool Returns true if the field input is a valid date and time, oElrwise adds an error message and returns false.
      */
     private function valid_datetimepicker_eu(array $validation_data): bool {
         return $this->valid_datetimepicker($validation_data);
     }
 
     /**
-     * Validates El campo time input.
+     * Validates the field time input.
      *
-     * @param array $validation_data El campo validation data containing key, label, and posted value.
-     * @return bool Returns true if El campo input is a valid time, oElrwise adds an error message and returns false.
+     * @param array $validation_data The field validation data containing key, label, and posted value.
+     * @return bool Returns true if the field input is a valid time, oElrwise adds an error message and returns false.
      */
     private function valid_time(array $validation_data): bool {
         extract($validation_data);
@@ -376,7 +376,7 @@ class Validation_helper_es {
                 return true;
             }
 
-            $this->form_submission_errors[$key][] = 'El campo ' . $label . ' debe contener un tiempo válido.';
+            $this->form_submission_errors[$key][] = 'El campo ' . $label . ' debe estar en un formato de tiempo válido.';
             return false;
         }
 
@@ -384,12 +384,12 @@ class Validation_helper_es {
     }
 
     /**
-     * Validates if El campo posted value matches a specified target field's value.
+     * Validates if the field posted value matches a specified target field's value.
      *
-     * @param string $key El campo key associated with El campo posted value.
-     * @param string $label El campo label/name of El campo posted value.
-     * @param string $posted_value El campo posted value to be compared.
-     * @param string $target_field El campo target field to compare against.
+     * @param string $key The field key associated with the field posted value.
+     * @param string $label The field label/name of the field posted value.
+     * @param string $posted_value The field posted value to be compared.
+     * @param string $target_field The field target field to compare against.
      * @return void
      */
     private function matches(string $key, string $label, string $posted_value, string $target_field): void {
@@ -412,12 +412,12 @@ class Validation_helper_es {
     }
 
     /**
-     * Validates if El campo posted value differs from a specified target field's value.
+     * Validates if the field posted value differs from a specified target field's value.
      *
-     * @param string $key El campo key associated with El campo posted value.
-     * @param string $label El campo label/name of El campo posted value.
-     * @param string $posted_value El campo posted value to be compared.
-     * @param string $target_field El campo target field to compare against.
+     * @param string $key The field key associated with the field posted value.
+     * @param string $label The field label/name of the field posted value.
+     * @param string $posted_value The field posted value to be compared.
+     * @param string $target_field The field target field to compare against.
      * @return void
      */
     private function differs(string $key, string $label, string $posted_value, string $target_field): void {
@@ -431,24 +431,24 @@ class Validation_helper_es {
             $target_value = $_POST[$target_field];
 
             if ($posted_value == $target_value) {
-                // If posted value matches El campo target value, set error flag
+                // If posted value matches The field target value, set error flag
                 $got_error = true;
             }
         }
 
         if ($got_error) {
             $target_label = $this->posted_fields[$target_field] ?? $target_field;
-            $this->form_submission_errors[$key][] = 'El campo ' . $label . ' coíncide con el campo ' . $target_label . '';
+            $this->form_submission_errors[$key][] = 'El campo ' . $label . ' no coíncide con el campo ' . $target_label . '';
         }
     }
 
     /**
-     * Validates if El campo posted value meets a minimum length requirement.
+     * Validates if the field posted value meets a minimum length requirement.
      *
-     * @param string $key El campo key associated with El campo posted value.
-     * @param string $label El campo label/name of El campo posted value.
-     * @param string $posted_value El campo posted value to be checked.
-     * @param int $inner_value El campo minimum length requirement.
+     * @param string $key The field key associated with the field posted value.
+     * @param string $label The field label/name of the field posted value.
+     * @param string $posted_value The field posted value to be checked.
+     * @param int $inner_value The field minimum length requirement.
      * @return void
      */
     private function min_length(string $key, string $label, string $posted_value, int $inner_value): void {
@@ -458,12 +458,12 @@ class Validation_helper_es {
     }
 
     /**
-     * Validates if El campo posted value meets a maximum length requirement.
+     * Validates if the field posted value meets a maximum length requirement.
      *
-     * @param string $key El campo key associated with El campo posted value.
-     * @param string $label El campo label/name of El campo posted value.
-     * @param string $posted_value El campo posted value to be checked.
-     * @param int $inner_value El campo maximum length requirement.
+     * @param string $key The field key associated with the field posted value.
+     * @param string $label The field label/name of the field posted value.
+     * @param string $posted_value The field posted value to be checked.
+     * @param int $inner_value The field maximum length requirement.
      * @return void
      */
     private function max_length(string $key, string $label, string $posted_value, int $inner_value): void {
@@ -473,12 +473,12 @@ class Validation_helper_es {
     }
 
     /**
-     * Validates if El campo posted value is greater than a specified inner value.
+     * Validates if the field posted value is greater than a specified inner value.
      *
-     * @param string $key El campo key associated with El campo posted value.
-     * @param string $label El campo label/name of El campo posted value.
-     * @param string $posted_value El campo posted value to be compared.
-     * @param int $inner_value El campo value for comparison.
+     * @param string $key The field key associated with the field posted value.
+     * @param string $label The field label/name of the field posted value.
+     * @param string $posted_value The field posted value to be compared.
+     * @param int $inner_value The field value for comparison.
      * @return void
      */
     private function greater_than(string $key, string $label, string $posted_value, int $inner_value): void {
@@ -488,12 +488,12 @@ class Validation_helper_es {
     }
 
     /**
-     * Validates if El campo posted value is less than a specified inner value.
+     * Validates if the field posted value is less than a specified inner value.
      *
-     * @param string $key El campo key associated with El campo posted value.
-     * @param string $label El campo label/name of El campo posted value.
-     * @param string $posted_value El campo posted value to be compared.
-     * @param int $inner_value El campo value for comparison.
+     * @param string $key The field key associated with the field posted value.
+     * @param string $label The field label/name of the field posted value.
+     * @param string $posted_value The field posted value to be compared.
+     * @param int $inner_value The field value for comparison.
      * @return void
      */
     private function less_than(string $key, string $label, string $posted_value, int $inner_value): void {
@@ -503,9 +503,9 @@ class Validation_helper_es {
     }
 
     /**
-     * Validates El campo provided email address.
+     * Validates the field provided email address.
      *
-     * @param array $validation_data El campo validation data containing key, label, and posted value.
+     * @param array $validation_data The field validation data containing key, label, and posted value.
      * @return void
      */
     private function valid_email(array $validation_data): void {
@@ -513,24 +513,24 @@ class Validation_helper_es {
 
         if ($posted_value !== '') {
             if (!filter_var($posted_value, FILTER_VALIDATE_EMAIL)) {
-                $this->form_submission_errors[$key][] = 'El campo ' . $label . ' debe contener una dirección de correo válida.';
+                $this->form_submission_errors[$key][] = 'El campo ' . $label . ' debe contener una dirección de correo electrónico válida.';
                 return;
             }
 
-            // Check if El campo email address contains an @ symbol and a valid domain name
+            // Check if the field email address contains an @ symbol and a valid domain name
             $at_pos = strpos($posted_value, '@');
             if ($at_pos === false || $at_pos === 0) {
-                $this->form_submission_errors[$key][] = 'El campo ' . $label . ' no está formateado apropiedamente.';
+                $this->form_submission_errors[$key][] = 'El campo ' . $label . ' no contiene una dirección de correo electrónico.';
                 return;
             }
 
-            // Make sure El campo email address is not too long
+            // Make sure the field email address is not too long
             if (strlen($posted_value) > 254) {
                 $this->form_submission_errors[$key][] = 'El campo ' . $label . ' es muy largo.';
                 return;
             }
 
-            // Check if El campo internet is available
+            // Check if the field internet is available
             if ($sock = @fsockopen('www.google.com', 80)) {
                 fclose($sock);
                 $domain_name = substr($posted_value, $at_pos + 1);
@@ -543,12 +543,12 @@ class Validation_helper_es {
     }
 
     /**
-     * Validates if El campo posted value matches El campo exact length specified.
+     * Validates if the field posted value matches the field exact length specified.
      *
-     * @param string $key El campo key associated with El campo posted value.
-     * @param string $label El campo label/name of El campo posted value.
-     * @param string $posted_value El campo posted value to be checked for length.
-     * @param int $inner_value El campo expected length of El campo posted value.
+     * @param string $key The field key associated with the field posted value.
+     * @param string $label The field label/name of the field posted value.
+     * @param string $posted_value The field posted value to be checked for length.
+     * @param int $inner_value The field expected length of the field posted value.
      * @return void
      */
     private function exact_length(string $key, string $label, string $posted_value, int $inner_value): void {
@@ -564,9 +564,9 @@ class Validation_helper_es {
     }
 
     /**
-     * Runs a special validation test based on El campo provided test name and value within square brackets.
+     * Runs a special validation test based on the field provided test name and value within square brackets.
      *
-     * @param array $validation_data El campo validation data containing key, label, posted value, and test to run.
+     * @param array $validation_data The field validation data containing key, label, posted value, and test to run.
      * @return void
      */
     private function run_special_test(array $validation_data): void {
@@ -579,11 +579,11 @@ class Validation_helper_es {
                 return; // No need to perform tests if no value is submitted
             }
 
-            // Get El campo value between El campo square brackets
+            // Get the field value between the field square brackets
             $inner_value = $this->_extract_content($test_to_run, '[', ']');
             $test_name = $this->_get_test_name($test_to_run);
 
-            // Validating based on El campo test name and inner value
+            // Validating based on the field test name and inner value
             switch ($test_name) {
                 case 'matches':
                     $this->matches($key, $label, $posted_value, $inner_value);
@@ -615,10 +615,10 @@ class Validation_helper_es {
     /**
      * Extracts content between specified start and end strings within a given string.
      *
-     * @param string $string El campo input string to search within.
-     * @param string $start El campo starting string to search for.
-     * @param string $end El campo ending string to search for.
-     * @return string Returns El campo extracted content.
+     * @param string $string The field input string to search within.
+     * @param string $start The field starting string to search for.
+     * @param string $end The field ending string to search for.
+     * @return string Returns The field extracted content.
      */
     private function _extract_content(string $string, string $start, string $end): string {
         $pos = stripos($string, $start);
@@ -631,10 +631,10 @@ class Validation_helper_es {
     }
 
     /**
-     * Gets El campo test name from El campo test to run string containing square brackets.
+     * Gets the field test name from the field test to run string containing square brackets.
      *
-     * @param string $test_to_run El campo string containing El campo test name and parameters.
-     * @return string Returns El campo extracted test name.
+     * @param string $test_to_run The field string containing the field test name and parameters.
+     * @return string Returns The field extracted test name.
      */
     private function _get_test_name(string $test_to_run): string {
         $pos = stripos($test_to_run, '[');
@@ -643,11 +643,11 @@ class Validation_helper_es {
     }
 
     /**
-     * Validates a file based on El campo provided rules.
+     * Validates a file based on the field provided rules.
      *
-     * @param string $key El campo key associated with El campo file input.
-     * @param string $label El campo label for El campo file input.
-     * @param mixed $rules El campo rules for file validation.
+     * @param string $key The field key associated with the field file input.
+     * @param string $label The field label for the field file input.
+     * @param mixed $rules The field rules for file validation.
      * @return void
      */
     private function validate_file(string $key, string $label, $rules): void {
@@ -663,10 +663,10 @@ class Validation_helper_es {
     }
 
     /**
-     * Handles El campo error for a missing file.
+     * Handles the field error for a missing file.
      *
-     * @param string $key El campo key associated with El campo file input.
-     * @param string $label El campo label for El campo file input.
+     * @param string $key The field key associated with the field file input.
+     * @param string $label The field label for the field file input.
      * @return void
      */
     private function handle_missing_file_error(string $key, string $label): void {
@@ -675,10 +675,10 @@ class Validation_helper_es {
     }
 
     /**
-     * Handles El campo error for an empty file.
+     * Handles the field error for an empty file.
      *
-     * @param string $key El campo key associated with El campo file input.
-     * @param string $label El campo label for El campo file input.
+     * @param string $key The field key associated with the field file input.
+     * @param string $label The field label for the field file input.
      * @return void
      */
     private function handle_empty_file_error(string $key, string $label): void {
@@ -687,10 +687,10 @@ class Validation_helper_es {
     }
 
     /**
-     * Runs El campo file validation logic.
+     * Runs The field file validation logic.
      *
-     * @param string $key El campo key associated with El campo file input.
-     * @param mixed $rules El campo rules for file validation.
+     * @param string $key The field key associated with the field file input.
+     * @param mixed $rules The field rules for file validation.
      * @return void
      */
     private function run_file_validation(string $key, $rules): void {
@@ -701,10 +701,10 @@ class Validation_helper_es {
     /**
      * Attempts to invoke a callback method for validation.
      *
-     * @param string $key El campo key associated with El campo input field.
-     * @param string $label El campo label for El campo input field.
-     * @param mixed $posted_value El campo value posted for validation.
-     * @param string $test_to_run El campo name of El campo test to run.
+     * @param string $key The field key associated with the field input field.
+     * @param string $label The field label for the field input field.
+     * @param mixed $posted_value The field value posted for validation.
+     * @param string $test_to_run The field name of the field test to run.
      * @return void
      */
     private function attempt_invoke_callback(string $key, string $label, $posted_value, string $test_to_run): void {
@@ -738,10 +738,10 @@ class Validation_helper_es {
     }
 
     /**
-     * Retrieves a segment from El campo URL.
+     * Retrieves a segment from the field URL.
      *
-     * @param int $num El campo segment number to retrieve.
-     * @return string El campo requested URL segment.
+     * @param int $num The field segment number to retrieve.
+     * @return string The field requested URL segment.
      */
     public function url_segment(int $num): string {
         $segments = SEGMENTS;
@@ -777,7 +777,7 @@ class Validation_helper_es {
     }
 
     /**
-     * Blocks El campo request in case of a CSRF attack.
+     * Blocks the field request in case of a CSRF attack.
      *
      * @return void
      */
@@ -785,64 +785,4 @@ class Validation_helper_es {
         header("location: " . BASE_URL);
         die();
     }
-
-
-
-
-/**
- * Retrieve and display validation error messages.
- *
- * @param string|null $opening_html El campo opening HTML tag for displaying individual field errors.
- * @param string|null $closing_html El campo closing HTML tag for displaying individual field errors.
- * @return string|null Returns El campo formatted validation error messages or null if no errors exist.
- */
-function validation_errorssp(?string $opening_html = null, ?string $closing_html = null): ?string {
-    if (isset($_SESSION['form_submission_errors'])) {
-        $validation_err_str = '';
-        $validation_errors = [];
-        $closing_html = (isset($closing_html)) ? $closing_html : false;
-        $form_submission_errors = $_SESSION['form_submission_errors'];
-
-        if ((isset($opening_html)) && (gettype($closing_html) == 'boolean')) {
-            // Build individual form field validation error(s)
-            if (isset($form_submission_errors[$opening_html])) {
-                $validation_err_str .= '<div class="validation-error-report">';
-                $form_field_errors = $form_submission_errors[$opening_html];
-                foreach ($form_field_errors as $validation_error) {
-                    $validation_err_str .= '<div>&#9679; ' . $validation_error . '</div>';
-                }
-                $validation_err_str .= '</div>';
-            }
-
-            return $validation_err_str;
-        } else {
-            // Normal error reporting
-            foreach ($form_submission_errors as $key => $form_field_errors) {
-                foreach ($form_field_errors as $form_field_error) {
-                    $validation_errors[] = $form_field_error;
-                }
-            }
-
-            if (!isset($opening_html)) {
-
-                if (defined('ERROR_OPEN') && defined('ERROR_CLOSE')) {
-                    $opening_html = ERROR_OPEN;
-                    $closing_html = ERROR_CLOSE;
-                } else {
-                    $opening_html = '<p style="color: red;">';
-                    $closing_html = '</p>';
-                }
-            }
-
-            foreach ($validation_errors as $form_submission_error) {
-                $validation_err_str .= $opening_html . $form_submission_error . $closing_html;
-            }
-
-            unset($_SESSION['form_submission_errors']);
-            return $validation_err_str;
-        }
-    }
-
-    return null;
-}
 }  
